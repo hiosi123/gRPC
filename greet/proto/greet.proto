@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package greet;
+
+option go_package = "github.com/hiosi123/gRPC/greet/proto";
+
+message GreetRequest {
+    string first_name = 1;
+}
+
+message GreetResponse {
+    string result = 1;
+}
+
+message SumRequest {
+    int32 first_value = 1;
+    int32 second_value = 2;
+}
+
+message SumResponse {
+    int32 sum_result = 1;
+}
+
+service GreetService {
+    rpc Greet (GreetRequest) returns (GreetResponse);
+    rpc GreetManyTimes (GreetRequest) returns (stream GreetResponse);
+    rpc Sum (SumRequest) returns (SumResponse);
+    rpc LongGreet (stream GreetRequest) returns (GreetResponse);
+    rpc GreetEveryone (stream GreetRequest) returns (stream GreetResponse);
+    rpc GreetWithDeadline (GreetRequest) returns (GreetResponse);
+}
+

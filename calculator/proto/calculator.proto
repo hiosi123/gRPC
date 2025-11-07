@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "github.com/hiosi123/gRPC/calculator/proto";
+
+import "sum.proto";
+import "prime.proto";
+import "avg.proto";
+import "max.proto";
+import "sqrt.proto";
+
+service CalculatorService {
+    rpc Sum(SumRequest) returns (SumResponse);
+    rpc GetPrime(PrimeRequest) returns (stream PrimeResponse);
+    rpc GetAvg(stream AvgRequest) returns (AvgResponse); 
+    rpc GetCurrentMax (stream MaxRequest) returns (stream MaxResponse);
+    rpc Sqrt (SqrtRequest) returns (SqrtResponse);
+}
